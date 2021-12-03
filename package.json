@@ -11,14 +11,12 @@
     "dedo": "bin/dedo"
   },
   "scripts": {
-    "build": "tsc --resolveJsonModule --declaration",
-    "compile": "tsc  --resolveJsonModule --declaration && node build/app.js",
-    "refreshFeedToken": "vsts-npm-auth -config .npmrc",
-    "serve": "nodemon -e ts --delay 1500ms --exec \"npm run start\"",
+    "compile": "tsc  --resolveJsonModule --declaration",
+    "serve": "tsc  --resolveJsonModule --declaration && node build/app.js",
     "start": "node build/app.js"
   },
   "author": "Joseph J Zapantis",
-  "license": "SEE LICENSE IN LICENSE.TXT",
+  "license": "SEE LICENSE IN LICENSE FILE",
   "dependencies": {
     "dedo_utilities": "1.0.26",
     "express": "4.17.1",
