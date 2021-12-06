@@ -19,16 +19,19 @@ console.log("|##################################################################
 console.log("| Copyright 2021 Joseph Jerry Zapantis                                             #####")
 console.log("|#######################################################################################");
 'use strict';
+const path = require("path");
 let envVars;
 try {
-    envVars = require("./config/env-vars/config").default || undefined;
+    const envVarFileName = `config-local`;
+    const envVarPath = path.resolve(__dirname,`./config/env-vars/${envVarFileName}`);
+    console.log("ATTEMPTING TO READ LOCAL ENV VARS FROM: ", envVarPath);
+    envVars = require(envVarPath).default || {};
 } catch (error) {
     console.log(error);
 }
 /** Set up Dependency Injection */
-import { Injector, Logger } from 'dedo_utilities';
 import { Factory } from './factory';
-import { cli } from "./serivce";
+import { cli } from "./services";
 
 async function start(): Promise<boolean> {
 
@@ -37,9 +40,7 @@ async function start(): Promise<boolean> {
     }
 
     try {
-        const logger = Injector.get<Logger>('Logger');
         await cli();
-        logger.info("GOING TO INITIALIZE SERVER");
         return true;
     } catch (error) {
         console.log("ERROR IN APP START");

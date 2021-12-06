@@ -1,16 +1,11 @@
-export interface CLIJobs {
-    env?: string;
-    job?: string;
-    target?: string;
-    source?: string;
+export interface CLICommandList {
+    [key: string]: CommandValue[];
 }
 
-export interface EncryptCLI extends CLIJobs {
-    encryptionTokens: SafeTokens;
-    secret: string;
+export type CommandValue = string;
+
+export interface CLIArgs {
+    [key: string]: string;
 }
 
-export interface SafeTokens {
-    key: string;
-    value: string;
-}
+export type ArgParserList = RegExp[]
